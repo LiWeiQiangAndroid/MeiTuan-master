@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lzctbyong.www.meituan.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bg"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/activity_main_city"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="2"
+            android:background="@drawable/buttonclick"
+            android:drawableRight="@drawable/mpay__ic_down_arrow_normal"
+            android:onClick="startpickcity"
+            android:text="city"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/activity_main_serach"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="4"
+            android:background="@drawable/searchbg"
+            android:drawableLeft="@drawable/apollo_ic_search"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:text="输入商家、分类或商圈"/>
+
+
+        <ImageButton
+            android:id="@+id/activity_main_erweima"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/buttonclick"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/intelligent_movie_2dbarcode"/>
+
+        <ImageButton
+            android:id="@+id/activity_main_msg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/buttonclick"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/group_actionbar_message_icon"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

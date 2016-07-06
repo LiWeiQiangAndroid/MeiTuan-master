@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="com.lzctbyong.www.meituan.CityPicker.CityiPckerActivity">
+
+    <include layout="@layout/titilebar"/>
+
+    <!--搜索框-->
+    <SearchView
+        android:id="@+id/activity_cityi_pcker_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@color/searchbg"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/edithint">
+    </SearchView>
+
+    <ListView
+        android:id="@+id/activity_cityi_pcker_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:visibility="gone">
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/activity_cityi_pcker_gpscity"
+            style="@style/citytext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="定位城市:请进行定位"/>
+
+        <ImageView
+            android:id="@+id/activity_cityi_pcker_refreshgps"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@+id/activity_cityi_pcker_gpscity"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/food_ic_actionbar_ic_map"/>
+
+        <include layout="@layout/currentcity"/>
+
+        <GridView
+            android:id="@+id/activity_cityi_pcker_curentcity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/currentcity_layout"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:horizontalSpacing="16dp"
+            android:numColumns="3"
+            android:padding="8dp"
+            android:verticalSpacing="16dp"
+            android:visibility="gone">
+
+        </GridView>
+
+        <TextView
+            android:id="@+id/activity_cityi_pcker_left"
+            style="@style/citytext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_cityi_pcker_curentcity"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="热门城市"/>
+
+        <TextView
+            android:id="@+id/activity_cityi_pcker_left2"
+            style="@style/citytext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_cityi_pcker_gridview"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="所有城市"/>
+
+        <GridView
+            android:id="@+id/activity_cityi_pcker_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_cityi_pcker_left"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:horizontalSpacing="16dp"
+            android:numColumns="3"
+            android:padding="8dp"
+            android:verticalSpacing="16dp">
+        </GridView>
+
+
+        <ListView
+            android:id="@+id/activity_cityi_pcker_allcity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/activity_cityi_pcker_left2"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:scrollbars="none"
+            android:visibility="gone"
+            >
+        </ListView>
+
+        <!--中央的文字-->
+        <TextView
+            android:id="@+id/tv_letter_overlay"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/overlay_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <!--右侧滑动栏-->
+        <com.lzctbyong.www.meituan.CityPicker.V.SideLetterBar
+            android:id="@+id/side_letter_bar"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/currentcity_layout"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_below="@id/activity_cityi_pcker_gpscity"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+
+    >
+
+    <TextView
+        android:id="@+id/currentcity_textleft"
+        style="@style/citytext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="当前城市:"/>
+
+    <TextView
+        android:id="@+id/currentcity_textright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/currentcity_textleft"
+        android:layout_alignParentRight="true"
+        android:paddingRight="24dp"
+        android:drawablePadding="8dp"
+        android:drawableRight="@drawable/arrow_down"
+        android:text="选择县区"
+        android:textSize="15sp"/>
+
+
+</RelativeLayout>
