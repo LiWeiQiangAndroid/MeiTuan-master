@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">MeiTuan</string>
+    <string name="app_name">没团</string>
     <string name="titilebarleft">国内</string>
     <string name="titilebarlright">海外</string>
     <string name="edithint">城市/行政区/拼音</string>
+    <string name="title_activity_fkm">FkmActivity</string>
 </resources>
