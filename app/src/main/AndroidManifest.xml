@@ -57,6 +57,7 @@
             android:name=".FkmActivity"
             android:label="@string/title_activity_fkm"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

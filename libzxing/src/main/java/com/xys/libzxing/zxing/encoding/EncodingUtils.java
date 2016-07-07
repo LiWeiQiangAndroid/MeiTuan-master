@@ -1,10 +1,18 @@
 package com.xys.libzxing.zxing.encoding;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PointF;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -21,10 +29,10 @@ public class EncodingUtils {
     /**
      * 创建二维码
      *
-     * @param content   content
-     * @param widthPix  widthPix
+     * @param content content
+     * @param widthPix widthPix
      * @param heightPix heightPix
-     * @param logoBm    logoBm
+     * @param logoBm logoBm
      * @return 二维码
      */
     public static Bitmap createQRCode(String content, int widthPix, int heightPix, Bitmap logoBm) {
@@ -102,5 +110,87 @@ public class EncodingUtils {
             e.getStackTrace();
         }
         return bitmap;
+    }
+
+    /**
+     * @param content
+     * @return
+     * @throws WriterException
+     */
+    public static Bitmap CreateOneDCode(String content, int mwidth, int mheight, boolean displayCode,
+            Context mContext)
+            throws
+            WriterException {
+        // 生成一维条码,编码时指定大小,不要生成了图片以后再进行缩放,这样会模糊导致识别失败
+        BitMatrix matrix = new MultiFormatWriter().encode(content,
+                BarcodeFormat.CODE_128, mwidth, mheight);
+        int width = matrix.getWidth();
+        int height = matrix.getHeight();
+        int[] pixels = new int[width * height];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (matrix.get(x, y)) {
+                    pixels[y * width + x] = 0xff000000;
+                }
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(width, height,
+                Bitmap.Config.ARGB_8888);
+        // 通过像素数组生成bitmap,具体参考api
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        Bitmap ruseltBitmap = null;
+        Bitmap codeBitmap = null;
+        if (displayCode) {
+            codeBitmap = creatCodeBitmap(content, width, height, mContext);
+            ruseltBitmap = mixtureBitmap(bitmap, codeBitmap, new PointF(0, height));
+        }
+        return bitmap;
+    }
+
+    /**
+     * 生成显示编码的Bitmap
+     *
+     * @param contents
+     * @param width
+     * @param height
+     * @param context
+     * @return
+     */
+    protected static Bitmap creatCodeBitmap(String contents, int width,
+            int height, Context context) {
+        TextView tv = new TextView(context);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        tv.setLayoutParams(layoutParams);
+        tv.setText(contents);
+        tv.setHeight(height);
+        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+        tv.setWidth(width);
+        tv.setDrawingCacheEnabled(true);
+        tv.setTextColor(Color.BLACK);
+        tv.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        tv.layout(0, 0, tv.getMeasuredWidth(), tv.getMeasuredHeight());
+        tv.buildDrawingCache();
+        Bitmap bitmapCode = tv.getDrawingCache();
+        return bitmapCode;
+    }
+
+    protected static Bitmap mixtureBitmap(Bitmap first, Bitmap second,
+            PointF fromPoint) {
+        if (first == null || second == null || fromPoint == null) {
+            return null;
+        }
+        int marginW = 20;
+        Bitmap newBitmap = Bitmap.createBitmap(
+                first.getWidth() + second.getWidth() + marginW,
+                first.getHeight() + second.getHeight(), Bitmap.Config.ARGB_4444);
+        Canvas cv = new Canvas(newBitmap);
+        cv.drawBitmap(first, marginW, 0, null);
+        cv.drawBitmap(second, fromPoint.x, fromPoint.y, null);
+        cv.save(Canvas.ALL_SAVE_FLAG);
+        cv.restore();
+
+        return newBitmap;
     }
 }

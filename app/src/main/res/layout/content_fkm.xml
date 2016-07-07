@@ -5,12 +5,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="50dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.lzctbyong.www.meituan.FkmActivity"
     tools:showIn="@layout/activity_fkm">
+
+    <RelativeLayout
+        android:id="@+id/content_fkm_tiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/fkmbg1">
+
+        <ImageView
+            android:id="@+id/content_fkm_img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+           android:layout_below="@id/content_fkm_img1"
+            android:id="@+id/content_fkm_imgtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+          />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/content_fkm_tiao"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="31dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/content_fkm_img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
