@@ -84,7 +84,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
             }
         });
         activitymainradiogrop.check(R.id.bottomlayout_rb1);
-
         //TODO: 2016/7/8
         //TODO: 消息提醒
         mBadgeView = new BadgeView(this);
@@ -185,7 +184,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                 } else {
                     activitymainerweimaview.setVisibility(View.VISIBLE);
                 }
-
                 break;
         }
     }

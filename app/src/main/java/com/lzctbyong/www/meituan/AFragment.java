@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ListView;
 
 
@@ -44,8 +43,8 @@ public class AFragment extends Fragment {
         fragmentalist.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new
                 String[]{"a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"}));
 
-        mInflate = LayoutInflater.from(getContext()).inflate(R.layout.mainfuntionbar, null);
-        GridView mGridView   = (GridView) mInflate.findViewById(R.id.mainfuntionbar_gridview);
+//        mInflate = LayoutInflater.from(getContext()).inflate(R.layout.mainfuntionbar, null);
+//        GridView mGridView   = (GridView) mInflate.findViewById(R.id.mainfuntionbar_gridview);
 
 
         return mInflate;
