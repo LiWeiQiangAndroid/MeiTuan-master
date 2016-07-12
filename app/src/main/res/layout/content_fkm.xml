@@ -23,28 +23,29 @@
             android:id="@+id/content_fkm_img1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"/>
 
         <TextView
-           android:layout_below="@id/content_fkm_img1"
             android:id="@+id/content_fkm_imgtext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/content_fkm_img1"
+            android:layout_centerHorizontal="true"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-          />
+            />
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/content_fkm_ma"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_below="@id/content_fkm_tiao"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="31dp"
-        android:layout_marginRight="31dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:background="#ffffff">
 
         <ImageView
@@ -55,5 +56,20 @@
 
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/content_fkm_ma"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/food_ic_locate_refresh"
+        android:drawablePadding="5dp"
+        android:text="每分钟自动刷新"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+
+
+
 
 </RelativeLayout>

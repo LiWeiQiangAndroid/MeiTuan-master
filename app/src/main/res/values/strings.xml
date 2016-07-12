@@ -4,4 +4,7 @@
     <string name="titilebarlright">海外</string>
     <string name="edithint">城市/行政区/拼音</string>
     <string name="title_activity_fkm">FkmActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

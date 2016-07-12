@@ -8,7 +8,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -16,10 +17,11 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jauker.widget.BadgeView;
 import com.lzctbyong.www.meituan.CityPicker.CityiPckerActivity;
@@ -30,7 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class MainActivity extends FragmentActivity implements OnClickListener {
 
     public static final int City_RequestCode = 0x1;
     public static final int Cap_RequestCode = 0x2;
@@ -38,30 +40,59 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private android.widget.TextView activitymainserach;
     private android.widget.ImageButton activitymainerweima;
     private android.widget.ImageButton activitymainmsg;
+    private android.widget.RadioGroup activitymainradiogrop;
     BadgeView mBadgeView;
     SQLiteDatabase mCookies;
-    private android.widget.LinearLayout activitymaintitle;
     private android.widget.ListView activitymainerweimaview;
+    FragmentManager mSupportFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.activitymainerweimaview = (ListView) findViewById(R.id.activity_main_erweimaview);
-        this.activitymaintitle = (LinearLayout) findViewById(R.id.activity_main_title);
+        this.activitymainradiogrop = (RadioGroup) findViewById(R.id.Bottomlayout_Radiogroup);
         this.activitymainmsg = (ImageButton) findViewById(R.id.activity_main_msg);
         this.activitymainerweima = (ImageButton) findViewById(R.id.activity_main_erweima);
         this.activitymainserach = (TextView) findViewById(R.id.activity_main_serach);
         this.activitymaincity = (Button) findViewById(R.id.activity_main_city);
         activitymainmsg.setOnClickListener(this);
         activitymainerweima.setOnClickListener(this);
-        /*消息提醒*/
+        //TODO: 2016/7/8 fragment碎片
+        mSupportFragmentManager = getSupportFragmentManager();
+        activitymainradiogrop.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.bottomlayout_rb1:
+                        mSupportFragmentManager.beginTransaction().replace(R.id.activity_main_fg, new
+                                AFragment()).commit();
+                        break;
+                    case R.id.bottomlayout_rb2:
+                        mSupportFragmentManager.beginTransaction().replace(R.id.activity_main_fg, new
+                                BFragment()).commit();
+                        break;
+                    case R.id.bottomlayout_rb3:
+                        mSupportFragmentManager.beginTransaction().replace(R.id.activity_main_fg, new
+                                CFragment()).commit();
+                        break;
+                    case R.id.bottomlayout_rb4:
+                        mSupportFragmentManager.beginTransaction().replace(R.id.activity_main_fg, new
+                                DFragment()).commit();
+                        break;
+                }
+            }
+        });
+        activitymainradiogrop.check(R.id.bottomlayout_rb1);
+
+        //TODO: 2016/7/8
+        //TODO: 消息提醒
         mBadgeView = new BadgeView(this);
         mBadgeView.setTargetView(activitymainmsg);
         mBadgeView.setBadgeGravity(Gravity.TOP | Gravity.RIGHT);
         mBadgeView.setBackgroundColor(Color.RED);
 
-        /*建立数据库*/
+        //TODO: 建立数据库
         mCookies = openOrCreateDatabase("cookies", 0, null);
         mCookies.execSQL("create table if not exists msgcookies (\n" +
                 "    id integer primary key autoincrement unique,\n" +
@@ -79,14 +110,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         String[] mtitile = {"扫一扫", "付款码"};
         int[] imgid = {R.drawable.apollo_ic_new_address, R.drawable.hotel_ic_pay_result_qrcode};
         List<Map<String, Object>> mMaps = new ArrayList<>();
-        Map<String, Object> mHashMap = new HashMap<>();
-        mHashMap.put("img", imgid[0]);
-        mHashMap.put("title", mtitile[0]);
-        mMaps.add(mHashMap);
-        mHashMap = new HashMap<>();
-        mHashMap.put("img", imgid[1]);
-        mHashMap.put("title", mtitile[1]);
-        mMaps.add(mHashMap);
+        for (int i = 0; i < mtitile.length; ++i) {
+            Map<String, Object> mHashMap = new HashMap<>();
+            mHashMap.put("img", imgid[i]);
+            mHashMap.put("title", mtitile[i]);
+            mMaps.add(mHashMap);
+        }
+
         /*设置数据*/
         activitymainerweimaview.setAdapter(new SimpleAdapter(this, mMaps, R.layout.erweimalist,
                 new String[]{"img", "title"}, new int[]{R.id.erweimalist_img, R.id.erweimalist_text}));
@@ -94,13 +124,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         activitymainerweimaview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, ""+position, Toast.LENGTH_SHORT).show();
                 switch (position) {
                     case 0:
                         Intent mIntent = new Intent(parent.getContext(), CaptureActivity.class);
                         startActivityForResult(mIntent, Cap_RequestCode);
                         break;
                     case 1:
-                        Intent mIntent2 = new Intent(parent.getContext(),FkmActivity.class);
+                        Intent mIntent2 = new Intent(parent.getContext(), FkmActivity.class);
                         startActivity(mIntent2);
                         break;
                 }
