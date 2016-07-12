@@ -10,33 +10,33 @@
     tools:context="com.lzctbyong.www.meituan.FkmActivity"
     tools:showIn="@layout/activity_fkm">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/content_fkm_tiao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
+        android:orientation="vertical"
         android:layout_marginRight="30dp"
         android:background="@drawable/fkmbg1">
 
-        <ImageView
-            android:id="@+id/content_fkm_img1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"/>
+            <ImageView
+                android:id="@+id/content_fkm_img1"
+                android:layout_width="wrap_content"
+                android:paddingTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"/>
 
-        <TextView
-            android:id="@+id/content_fkm_imgtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/content_fkm_img1"
-            android:layout_centerHorizontal="true"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            />
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/content_fkm_imgtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/content_fkm_ma"
@@ -67,9 +67,6 @@
         android:drawablePadding="5dp"
         android:text="每分钟自动刷新"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-
-
 
 
 </RelativeLayout>
